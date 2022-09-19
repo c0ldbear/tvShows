@@ -28,9 +28,16 @@ class TvShowListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TvShow")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TvShow", for: indexPath)
         cell.textLabel?.text = "Tv Show #\(indexPath.row + 1)"
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailView = TvShowDetailViewController()
+        detailView.showTitle = "Tv Show #\(indexPath.row + 1)"
+        detailView.showGenres = "Drama"
+        navigationController?.pushViewController(detailView, animated: true)
     }
 
 }
