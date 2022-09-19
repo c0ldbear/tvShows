@@ -40,9 +40,23 @@ class ApiCaller {
         
         return nil
     }
+    
+    func imageFetch(url image: String) -> Data? {
+        if let url = URL(string: image) {
+            do {
+                let data = try Data(contentsOf: url)
+                return data
+            } catch {
+                print("Fetching image error")
+                print(error)
+            }
+        }
+        return nil
+    }
 }
 
 class TvShowData: Codable {
     var name: String?
     var language: String?
+    var image: [String: String]?
 }

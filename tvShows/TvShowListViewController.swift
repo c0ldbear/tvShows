@@ -14,7 +14,7 @@ class TvShowListViewController: UITableViewController {
     //      Test with api endpoint: https://api.tvmaze.com/singlesearch/shows?q=girls
     // Create a data model for the data from
     
-    var tvShows = [TvShowData]()
+    var tvShows = [TvShow]()
     var apiCaller = ApiCaller()
     
     @IBOutlet var searchTvShows: UISearchBar!
@@ -26,8 +26,13 @@ class TvShowListViewController: UITableViewController {
         DispatchQueue.global().async { [weak self] in
             guard let weakSelf = self else { return }
             if let tvShows = weakSelf.apiCaller.fetch()  {
-                weakSelf.tvShows = tvShows.sorted {
+                let sortedTvShows = tvShows.sorted {
                     $0.name!.lowercased() < $1.name!.lowercased()
+                }
+                
+                for showData in sortedTvShows {
+                    let show = TvShow(name: showData.name!, imageMedium: showData.image?["medium"] ?? "", imageOriginal: showData.image?["original"] ?? "")
+                    weakSelf.tvShows.append(show)
                 }
                 
                 DispatchQueue.main.async { [weak self] in
@@ -61,3 +66,14 @@ class TvShowListViewController: UITableViewController {
 
 }
 
+class TvShow {
+    var name: String
+    var imageMedium: String
+    var imageOriginal: String
+    
+    init(name: String, imageMedium: String, imageOriginal: String) {
+        self.name = name
+        self.imageMedium = imageMedium
+        self.imageOriginal = imageOriginal
+    }
+}
