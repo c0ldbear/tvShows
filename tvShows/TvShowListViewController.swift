@@ -14,7 +14,7 @@ class TvShowListViewController: UITableViewController {
     //      Test with api endpoint: https://api.tvmaze.com/singlesearch/shows?q=girls
     // Create a data model for the data from
     
-    var tvShow: TvShowData?
+    var tvShows: [TvShowData]?
     var apiCaller = ApiCaller()
     
     @IBOutlet var searchTvShows: UISearchBar!
@@ -25,10 +25,14 @@ class TvShowListViewController: UITableViewController {
         
         DispatchQueue.global().async { [weak self] in
             guard let weakSelf = self else { return }
-            weakSelf.tvShow = weakSelf.apiCaller.fetch()
+            weakSelf.tvShows = weakSelf.apiCaller.fetch()
+            weakSelf.tvShows?.sort {
+                $0.name!.lowercased() < $1.name!.lowercased()
+            }
             
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                guard let weakSelf = self else { return }
+                weakSelf.tableView.reloadData()
             }
         }
         
@@ -37,12 +41,12 @@ class TvShowListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return tvShows?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TvShow", for: indexPath)
-        cell.textLabel?.text = tvShow?.name ?? "Tv Show #\(indexPath.row + 1)"
+        cell.textLabel?.text = tvShows?[indexPath.row].name ?? "Tv Show #\(indexPath.row + 1)"
         cell.imageView?.image = UIImage(systemName: "film")
         return cell
     }
