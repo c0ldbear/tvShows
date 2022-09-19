@@ -45,6 +45,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="WCp-Rp-8s7"/>
+                    <connections>
+                        <outlet property="searchTvShows" destination="Eva-nr-JLb" id="gVy-rY-rmg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGs-M8-2gN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

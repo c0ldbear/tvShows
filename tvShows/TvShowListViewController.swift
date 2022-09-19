@@ -14,6 +14,8 @@ class TvShowListViewController: UITableViewController {
     //      Test with api endpoint: https://api.tvmaze.com/singlesearch/shows?q=girls
     // Create a data model for the data from
     
+    @IBOutlet var searchTvShows: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -21,7 +23,15 @@ class TvShowListViewController: UITableViewController {
         title = "TV Shows"
     }
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TvShow")!
+        cell.textLabel?.text = "Tv Show #\(indexPath.row + 1)"
+        return cell
+    }
 
 }
 
