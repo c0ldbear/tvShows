@@ -9,7 +9,7 @@ import Foundation
 
 class ApiCaller {
     
-    // Change to: https://api.tvmaze.com/search/shows?q=girls (minus "qirls")
+    // Change to: https://api.tvmaze.com/search/shows?q=girls (minus "qirls", this will be added by the search bar)
     var tvShowUrlString: String = "https://api.tvmaze.com/shows"
     // get all shows: https://api.tvmaze.com/shows
     

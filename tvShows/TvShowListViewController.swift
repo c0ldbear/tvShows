@@ -9,10 +9,11 @@ import UIKit
 
 class TvShowListViewController: UITableViewController {
     // Plan:
-    // Create a DetailView for the items in the list
     // Create an ApiCaller for TV-Maze API (https://www.tvmaze.com/api)
     //      Test with api endpoint: https://api.tvmaze.com/singlesearch/shows?q=girls
     // Create a data model for the data from
+    // Use the Search Bar to make a search to the API, make a call first when user press enter
+    // Add an activity spinner
     
     var tvShows = [TvShow]()
     var apiCaller = ApiCaller()
@@ -29,11 +30,13 @@ class TvShowListViewController: UITableViewController {
                 let sortedTvShows = tvShows.sorted {
                     $0.name!.lowercased() < $1.name!.lowercased()
                 }
-                var counter = 0
+                var counter = 0 // TODO: REMOVE
                 for showData in sortedTvShows {
                     let imageData = weakSelf.apiCaller.imageFetch(url: showData.image?["medium"] ?? "")
                     let imageOriginalData = weakSelf.apiCaller.imageFetch(url: showData.image?["original"] ?? "")
-                    let show = TvShow(name: showData.name!, imageMedium: imageData ?? Data(), imageOriginal: imageOriginalData ?? Data())
+                    let show = TvShow(name: showData.name!,
+                                      imageMedium: imageData ?? Data(),
+                                      imageOriginal: imageOriginalData ?? Data())
                     weakSelf.tvShows.append(show)
                     
                     // TODO: REMOVE
