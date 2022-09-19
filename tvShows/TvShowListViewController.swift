@@ -29,10 +29,18 @@ class TvShowListViewController: UITableViewController {
                 let sortedTvShows = tvShows.sorted {
                     $0.name!.lowercased() < $1.name!.lowercased()
                 }
-                
+                var counter = 0
                 for showData in sortedTvShows {
-                    let show = TvShow(name: showData.name!, imageMedium: showData.image?["medium"] ?? "", imageOriginal: showData.image?["original"] ?? "")
+                    let imageData = weakSelf.apiCaller.imageFetch(url: showData.image?["medium"] ?? "")
+                    let imageOriginalData = weakSelf.apiCaller.imageFetch(url: showData.image?["original"] ?? "")
+                    let show = TvShow(name: showData.name!, imageMedium: imageData ?? Data(), imageOriginal: imageOriginalData ?? Data())
                     weakSelf.tvShows.append(show)
+                    
+                    // TODO: REMOVE
+                    counter += 1
+                    if counter > 10 {
+                        break
+                    }
                 }
                 
                 DispatchQueue.main.async { [weak self] in
@@ -52,15 +60,18 @@ class TvShowListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TvShow", for: indexPath)
-        cell.textLabel?.text = tvShows[indexPath.row].name ?? "Tv Show #\(indexPath.row + 1)"
-        cell.imageView?.image = UIImage(systemName: "film")
+        let tvShow = tvShows[indexPath.row]
+        cell.textLabel?.text = tvShow.name
+//        cell.imageView?.image = UIImage(systemName: "film")
+        cell.imageView?.image = UIImage(data: tvShow.imageMedium)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailView = TvShowDetailViewController()
-        detailView.showTitle = "Tv Show #\(indexPath.row + 1)"
-        detailView.showGenres = "Drama"
+        let tvShow = tvShows[indexPath.row]
+        detailView.showTitle = tvShow.name
+        detailView.showGenres = tvShow.name
         navigationController?.pushViewController(detailView, animated: true)
     }
 
@@ -68,10 +79,10 @@ class TvShowListViewController: UITableViewController {
 
 class TvShow {
     var name: String
-    var imageMedium: String
-    var imageOriginal: String
+    var imageMedium: Data
+    var imageOriginal: Data
     
-    init(name: String, imageMedium: String, imageOriginal: String) {
+    init(name: String, imageMedium: Data, imageOriginal: Data) {
         self.name = name
         self.imageMedium = imageMedium
         self.imageOriginal = imageOriginal
