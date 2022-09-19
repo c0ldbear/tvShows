@@ -30,6 +30,7 @@ class TvShowListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TvShow", for: indexPath)
         cell.textLabel?.text = "Tv Show #\(indexPath.row + 1)"
+        cell.imageView?.image = UIImage(systemName: "film")
         return cell
     }
     
