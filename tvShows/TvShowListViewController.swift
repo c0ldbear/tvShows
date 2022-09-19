@@ -9,8 +9,6 @@ import UIKit
 
 class TvShowListViewController: UITableViewController {
     // Plan:
-    // Create a UITableView (to show items in a list)
-    // Embed in a navigation controller
     // Create a DetailView for the items in the list
     // Create an ApiCaller for TV-Maze API (https://www.tvmaze.com/api)
     //      Test with api endpoint: https://api.tvmaze.com/singlesearch/shows?q=girls
@@ -23,6 +21,7 @@ class TvShowListViewController: UITableViewController {
         title = "TV Shows"
     }
 
+    
 
 }
 
