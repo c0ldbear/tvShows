@@ -27,38 +27,6 @@ class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
         setupSearchBarController()
         activityIndicator.startAnimating()
         
-        DispatchQueue.global().async { [weak self] in
-            guard let weakSelf = self else { return }
-            if let tvShows = weakSelf.apiCaller.fetch()  {
-                let sortedTvShows = tvShows.sorted {
-                    $0.name!.lowercased() < $1.name!.lowercased()
-                }
-                var counter = 0 // TODO: REMOVE
-                for showData in sortedTvShows {
-                    let imageData = weakSelf.apiCaller.imageFetch(url: showData.image?["medium"] ?? "")
-                    let imageOriginalData = weakSelf.apiCaller.imageFetch(url: showData.image?["original"] ?? "") // TODO: Move to when the detail view is loading
-                    let show = TvShow(name: showData.name!,
-                                      genres: showData.genres!,
-                                      imageMedium: imageData ?? Data(),
-                                      imageOriginal: imageOriginalData ?? Data())
-                    weakSelf.tvShows.append(show)
-                    
-                    // TODO: REMOVE
-                    counter += 1
-                    if counter > 10 {
-                        break
-                    }
-                }
-                weakSelf.filteredTvShows = weakSelf.tvShows
-                
-                DispatchQueue.main.async { [weak self] in
-                    guard let weakSelf = self else { return }
-                    weakSelf.activityIndicator.stopAnimating()
-                    weakSelf.searchBarController.searchBar.isHidden = false
-                    weakSelf.tableView.reloadData()
-                }
-            }
-        }
     }
     
     override func viewDidLoad() {
