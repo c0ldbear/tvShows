@@ -9,7 +9,8 @@ import Foundation
 
 class TvShowData: Codable {
     var name: String?
-    var language: String?
     var genres: [String]?
+    var language: String?
+    var runtime: Int?
     var image: [String: String]?
 }
