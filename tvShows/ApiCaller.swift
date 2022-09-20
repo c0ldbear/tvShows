@@ -12,12 +12,13 @@ class ApiCaller {
     // Change to: https://api.tvmaze.com/search/shows?q=girls (minus "qirls", this will be added by the search bar)
     // ^ TODO: Need to change Data model to get "show" as an codable so that we then can get right info
     var tvShowUrlString: String = "https://api.tvmaze.com/shows"
+    var tvShowUrlQuery: String = "https://api.tvmaze.com/search/shows?q="
     // get all shows: https://api.tvmaze.com/shows
     
     init() {}
     
-    func fetch() -> [TvShowData]? {
-        if let url = URL(string: tvShowUrlString) {
+    func fetch(with urlQuery: String? = nil) -> [TvShowData]? {
+        if let url = URL(string: urlQuery ?? tvShowUrlString) {
             do {
                 let data = try Data(contentsOf: url)
                 return parse(json: data)
