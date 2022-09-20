@@ -12,11 +12,14 @@ class TvShowDetailViewController: UIViewController {
     var imageUI: UIImageView!
     var showLangUI: UILabel!
     var showGenresUI: UILabel!
-    // TODO: Add more info like duration (in min), 
+    var durationUI: UILabel!
+    // TODO: Add more info like duration (in min),
     
     var showGenres: [String]?
     var showTitle: String?
+    var showLang: String?
     var showPoster: Data?
+    var duration: String?
     
     override func loadView() {
         super.loadView()
@@ -31,14 +34,35 @@ class TvShowDetailViewController: UIViewController {
         
         showGenresUI = UILabel()
         showGenresUI.translatesAutoresizingMaskIntoConstraints = false
-        showGenresUI.text = "Genres: \(showGenres?.joined(separator: ", ") ?? "None found")"
+        if let showGenres = showGenres {
+            showGenresUI.text = "Genres: \(showGenres.joined(separator: ", "))"
+        }
         view.addSubview(showGenresUI)
+        
+        showLangUI = UILabel()
+        showLangUI.translatesAutoresizingMaskIntoConstraints = false
+        if let showLang = showLang {
+            showLangUI.text = "Language: \(showLang)"
+        }
+        view.addSubview(showLangUI)
+        
+        durationUI = UILabel()
+        durationUI.translatesAutoresizingMaskIntoConstraints = false
+        if let duration = duration {
+            durationUI.text = "Duration: \(duration) min"
+        }
+        view.addSubview(durationUI)
         
         NSLayoutConstraint.activate([
             imageUI.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             imageUI.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             showGenresUI.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            showGenresUI.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+            showGenresUI.topAnchor.constraint(equalTo: imageUI.bottomAnchor, constant: 20),
+            showLangUI.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            showLangUI.topAnchor.constraint(equalTo: showGenresUI.bottomAnchor, constant: 20),
+            durationUI.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            durationUI.topAnchor.constraint(equalTo: showLangUI.bottomAnchor, constant: 20)
+            
         ])
     }
     
