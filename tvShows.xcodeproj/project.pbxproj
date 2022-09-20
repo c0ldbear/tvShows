@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		9F2FC5C428D8C23D00486D6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5C328D8C23D00486D6B /* AppDelegate.swift */; };
 		9F2FC5C628D8C23D00486D6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5C528D8C23D00486D6B /* SceneDelegate.swift */; };
-		9F2FC5C828D8C23D00486D6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5C728D8C23D00486D6B /* ViewController.swift */; };
+		9F2FC5C828D8C23D00486D6B /* TvShowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5C728D8C23D00486D6B /* TvShowListViewController.swift */; };
 		9F2FC5CB28D8C23D00486D6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F2FC5C928D8C23D00486D6B /* Main.storyboard */; };
 		9F2FC5CD28D8C23F00486D6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F2FC5CC28D8C23F00486D6B /* Assets.xcassets */; };
 		9F2FC5D028D8C23F00486D6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F2FC5CE28D8C23F00486D6B /* LaunchScreen.storyboard */; };
+		9F2FC5D828D8C77F00486D6B /* TvShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5D728D8C77F00486D6B /* TvShowDetailViewController.swift */; };
+		9F2FC5DA28D8CBD500486D6B /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5D928D8CBD500486D6B /* ApiCaller.swift */; };
+		9F2FC5DC28D98F0A00486D6B /* TvShowListViewController+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5DB28D98F0A00486D6B /* TvShowListViewController+ActivityIndicator.swift */; };
+		9F2FC5DE28D9906600486D6B /* TvShowListViewController+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5DD28D9906600486D6B /* TvShowListViewController+SearchBar.swift */; };
+		9F2FC5E028D9941A00486D6B /* TvShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5DF28D9941A00486D6B /* TvShow.swift */; };
+		9F2FC5E228D9945D00486D6B /* TvShowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5E128D9945D00486D6B /* TvShowData.swift */; };
+		9F2FC5E428D99AE700486D6B /* TvShowListViewController+GetAllShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2FC5E328D99AE700486D6B /* TvShowListViewController+GetAllShows.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F2FC5C028D8C23D00486D6B /* tvShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2FC5C328D8C23D00486D6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F2FC5C528D8C23D00486D6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F2FC5C728D8C23D00486D6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9F2FC5C728D8C23D00486D6B /* TvShowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowListViewController.swift; sourceTree = "<group>"; };
 		9F2FC5CA28D8C23D00486D6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F2FC5CC28D8C23F00486D6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F2FC5CF28D8C23F00486D6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F2FC5D128D8C23F00486D6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F2FC5D728D8C77F00486D6B /* TvShowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowDetailViewController.swift; sourceTree = "<group>"; };
+		9F2FC5D928D8CBD500486D6B /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
+		9F2FC5DB28D98F0A00486D6B /* TvShowListViewController+ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TvShowListViewController+ActivityIndicator.swift"; sourceTree = "<group>"; };
+		9F2FC5DD28D9906600486D6B /* TvShowListViewController+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TvShowListViewController+SearchBar.swift"; sourceTree = "<group>"; };
+		9F2FC5DF28D9941A00486D6B /* TvShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShow.swift; sourceTree = "<group>"; };
+		9F2FC5E128D9945D00486D6B /* TvShowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowData.swift; sourceTree = "<group>"; };
+		9F2FC5E328D99AE700486D6B /* TvShowListViewController+GetAllShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TvShowListViewController+GetAllShows.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,54 @@
 		9F2FC5C228D8C23D00486D6B /* tvShows */ = {
 			isa = PBXGroup;
 			children = (
+				9F2FC5E828D9A2C400486D6B /* API */,
+				9F2FC5E628D9A2A200486D6B /* Main View */,
+				9F2FC5E728D9A2B700486D6B /* Detail View */,
+				9F2FC5E528D99BF300486D6B /* Models */,
 				9F2FC5C328D8C23D00486D6B /* AppDelegate.swift */,
 				9F2FC5C528D8C23D00486D6B /* SceneDelegate.swift */,
-				9F2FC5C728D8C23D00486D6B /* ViewController.swift */,
 				9F2FC5C928D8C23D00486D6B /* Main.storyboard */,
 				9F2FC5CC28D8C23F00486D6B /* Assets.xcassets */,
 				9F2FC5CE28D8C23F00486D6B /* LaunchScreen.storyboard */,
 				9F2FC5D128D8C23F00486D6B /* Info.plist */,
 			);
 			path = tvShows;
+			sourceTree = "<group>";
+		};
+		9F2FC5E528D99BF300486D6B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F2FC5E128D9945D00486D6B /* TvShowData.swift */,
+				9F2FC5DF28D9941A00486D6B /* TvShow.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9F2FC5E628D9A2A200486D6B /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				9F2FC5C728D8C23D00486D6B /* TvShowListViewController.swift */,
+				9F2FC5DD28D9906600486D6B /* TvShowListViewController+SearchBar.swift */,
+				9F2FC5DB28D98F0A00486D6B /* TvShowListViewController+ActivityIndicator.swift */,
+				9F2FC5E328D99AE700486D6B /* TvShowListViewController+GetAllShows.swift */,
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
+		9F2FC5E728D9A2B700486D6B /* Detail View */ = {
+			isa = PBXGroup;
+			children = (
+				9F2FC5D728D8C77F00486D6B /* TvShowDetailViewController.swift */,
+			);
+			path = "Detail View";
+			sourceTree = "<group>";
+		};
+		9F2FC5E828D9A2C400486D6B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9F2FC5D928D8CBD500486D6B /* ApiCaller.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +191,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F2FC5C828D8C23D00486D6B /* ViewController.swift in Sources */,
+				9F2FC5D828D8C77F00486D6B /* TvShowDetailViewController.swift in Sources */,
+				9F2FC5C828D8C23D00486D6B /* TvShowListViewController.swift in Sources */,
+				9F2FC5E028D9941A00486D6B /* TvShow.swift in Sources */,
+				9F2FC5DE28D9906600486D6B /* TvShowListViewController+SearchBar.swift in Sources */,
+				9F2FC5DC28D98F0A00486D6B /* TvShowListViewController+ActivityIndicator.swift in Sources */,
+				9F2FC5E228D9945D00486D6B /* TvShowData.swift in Sources */,
 				9F2FC5C428D8C23D00486D6B /* AppDelegate.swift in Sources */,
+				9F2FC5E428D99AE700486D6B /* TvShowListViewController+GetAllShows.swift in Sources */,
 				9F2FC5C628D8C23D00486D6B /* SceneDelegate.swift in Sources */,
+				9F2FC5DA28D8CBD500486D6B /* ApiCaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
