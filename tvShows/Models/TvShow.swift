@@ -11,12 +11,10 @@ class TvShow {
     var name: String
     var genres: [String]
     var imageMedium: Data
-    var imageOriginal: Data
     
-    init(name: String, genres: [String], imageMedium: Data, imageOriginal: Data) {
+    init(name: String, genres: [String], imageMedium: Data) {
         self.name = name
         self.genres = genres
         self.imageMedium = imageMedium
-        self.imageOriginal = imageOriginal
     }
 }
