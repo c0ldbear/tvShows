@@ -9,16 +9,13 @@ import Foundation
 
 class ApiCaller {
     
-    var tvShowUrlString: String = "https://api.tvmaze.com/shows"
+    var tvShowUrlString: String = "https://api.tvmaze.com/shows" // get all the shows (Not good)
 //    var tvShowUrlQuery: String = "https://api.tvmaze.com/search/shows?q=" // Could be nice to use if we only want to fetch when user searches
-    // get all shows: https://api.tvmaze.com/shows
     
     init() {}
     
-    func fetch(with urlQuery: String? = nil) -> [TvShowData]? {
-        var urlString: String = tvShowUrlString
-        
-        if let url = URL(string: urlString) {
+    func fetch() -> [TvShowData]? {
+        if let url = URL(string: tvShowUrlString) {
             do {
                 let data = try Data(contentsOf: url)
                 return parse(json: data)
