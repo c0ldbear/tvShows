@@ -18,6 +18,18 @@ extension TvShowListViewController {
     }
     
     func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text?.lowercased() else {
+            return
+        }
         
+        filteredTvShows.removeAll()
+        filteredTvShows.append(contentsOf: tvShows.filter { show in
+            return show.name.lowercased().contains(text)
+        })
+        
+        if !searchController.isActive {
+            filteredTvShows = tvShows
+        }
+        tableView.reloadData()
     }
 }
