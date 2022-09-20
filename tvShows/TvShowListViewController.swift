@@ -10,9 +10,6 @@ import UIKit
 class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
     
     // Plan:
-    // Create an ApiCaller for TV-Maze API (https://www.tvmaze.com/api)
-    //      Test with api endpoint: https://api.tvmaze.com/singlesearch/shows?q=girls
-    // Create a data model for the data from
     // Use the Search Bar to make a search to the API, make a call first when user press enter
     // Add an activity spinner
     
@@ -90,19 +87,4 @@ class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
         navigationController?.pushViewController(detailView, animated: true)
     }
 
-}
-
-// TODO: Move to own file
-class TvShow {
-    var name: String
-    var genres: [String]
-    var imageMedium: Data
-    var imageOriginal: Data
-    
-    init(name: String, genres: [String], imageMedium: Data, imageOriginal: Data) {
-        self.name = name
-        self.genres = genres
-        self.imageMedium = imageMedium
-        self.imageOriginal = imageOriginal
-    }
 }
