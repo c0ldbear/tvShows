@@ -12,8 +12,9 @@ class TvShowDetailViewController: UIViewController {
     var imageUI: UIImageView!
     var showLangUI: UILabel!
     var showGenresUI: UILabel!
+    // TODO: Add more info like duration (in min), 
     
-    var showGenres: String?
+    var showGenres: [String]?
     var showTitle: String?
     var showPoster: Data?
     
@@ -30,7 +31,7 @@ class TvShowDetailViewController: UIViewController {
         
         showGenresUI = UILabel()
         showGenresUI.translatesAutoresizingMaskIntoConstraints = false
-        showGenresUI.text = showGenres ?? "lol"
+        showGenresUI.text = "Genres: \(showGenres?.joined(separator: ", ") ?? "None found")"
         view.addSubview(showGenresUI)
         
         NSLayoutConstraint.activate([
