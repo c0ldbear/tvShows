@@ -54,6 +54,8 @@ class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
         detailView.showTitle = tvShow.name
         detailView.showGenres = tvShow.genres
         detailView.showPoster = tvShow.imageMedium
+        detailView.showLang = tvShow.language
+        detailView.duration = String(tvShow.duration)
         // TODO: Add more info like duration (in min),
         navigationController?.pushViewController(detailView, animated: true)
     }
