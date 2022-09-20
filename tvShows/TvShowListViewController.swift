@@ -14,6 +14,7 @@ class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
     // Add an activity spinner
     
     var tvShows = [TvShow]()
+    var filteredTvShows = [TvShow]()
     var apiCaller = ApiCaller()
     
     var searchBarController: UISearchController!
@@ -48,6 +49,7 @@ class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
                         break
                     }
                 }
+                weakSelf.filteredTvShows = weakSelf.tvShows
                 
                 DispatchQueue.main.async { [weak self] in
                     guard let weakSelf = self else { return }
@@ -66,12 +68,12 @@ class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tvShows.count > 0 ? tvShows.count : 0
+        return filteredTvShows.count > 0 ? filteredTvShows.count : 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TvShow", for: indexPath)
-        let tvShow = tvShows[indexPath.row]
+        let tvShow = filteredTvShows[indexPath.row]
         cell.textLabel?.text = tvShow.name
         cell.imageView?.image = UIImage(data: tvShow.imageMedium)
         return cell
@@ -79,7 +81,7 @@ class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailView = TvShowDetailViewController()
-        let tvShow = tvShows[indexPath.row]
+        let tvShow = filteredTvShows[indexPath.row]
         detailView.showTitle = tvShow.name
         detailView.showGenres = tvShow.genres
         detailView.showPoster = tvShow.imageMedium
