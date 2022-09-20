@@ -33,7 +33,7 @@ class TvShowListViewController: UITableViewController {
                 var counter = 0 // TODO: REMOVE
                 for showData in sortedTvShows {
                     let imageData = weakSelf.apiCaller.imageFetch(url: showData.image?["medium"] ?? "")
-                    let imageOriginalData = weakSelf.apiCaller.imageFetch(url: showData.image?["original"] ?? "")
+                    let imageOriginalData = weakSelf.apiCaller.imageFetch(url: showData.image?["original"] ?? "") // TODO: Move to when the detail view is loading
                     let show = TvShow(name: showData.name!,
                                       imageMedium: imageData ?? Data(),
                                       imageOriginal: imageOriginalData ?? Data())
@@ -75,11 +75,14 @@ class TvShowListViewController: UITableViewController {
         let tvShow = tvShows[indexPath.row]
         detailView.showTitle = tvShow.name
         detailView.showGenres = tvShow.name
+//        detailView.showPoster = tvShow.imageOriginal
+        detailView.showPoster = tvShow.imageMedium
         navigationController?.pushViewController(detailView, animated: true)
     }
 
 }
 
+// TODO: Move to own file
 class TvShow {
     var name: String
     var imageMedium: Data
