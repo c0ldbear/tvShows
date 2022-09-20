@@ -26,6 +26,7 @@ class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
         setupActivityIndicator()
         setupSearchBarController()
         activityIndicator.startAnimating()
+        getAllTvShows()
         
     }
     
