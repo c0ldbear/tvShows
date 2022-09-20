@@ -15,7 +15,7 @@ extension TvShowListViewController {
                 let sortedTvShows = tvShows.sorted {
                     $0.name!.lowercased() < $1.name!.lowercased()
                 }
-                var counter = 0 // TODO: REMOVE
+                
                 for showData in sortedTvShows {
                     let imageData = weakSelf.apiCaller.imageFetch(url: showData.image?["medium"] ?? "")
                     guard let name = showData.name,
@@ -33,12 +33,6 @@ extension TvShowListViewController {
                                       duration: duration,
                                       imageMedium: showImage)
                     weakSelf.tvShows.append(show)
-                    
-                    // TODO: REMOVE
-                    counter += 1
-                    if counter > 0 {
-                        break
-                    }
                 }
                 weakSelf.filteredTvShows = weakSelf.tvShows
                 
