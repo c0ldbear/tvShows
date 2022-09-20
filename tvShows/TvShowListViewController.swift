@@ -19,10 +19,17 @@ class TvShowListViewController: UITableViewController {
     var apiCaller = ApiCaller()
     
     @IBOutlet var searchTvShows: UISearchBar!
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.topAnchor.constraint(equalTo: searchTvShows.bottomAnchor, constant: 100).isActive = true
+        searchTvShows.isHidden = true
+        activityIndicator.startAnimating()
         
         DispatchQueue.global().async { [weak self] in
             guard let weakSelf = self else { return }
@@ -35,6 +42,7 @@ class TvShowListViewController: UITableViewController {
                     let imageData = weakSelf.apiCaller.imageFetch(url: showData.image?["medium"] ?? "")
                     let imageOriginalData = weakSelf.apiCaller.imageFetch(url: showData.image?["original"] ?? "") // TODO: Move to when the detail view is loading
                     let show = TvShow(name: showData.name!,
+                                      genres: showData.genres!,
                                       imageMedium: imageData ?? Data(),
                                       imageOriginal: imageOriginalData ?? Data())
                     weakSelf.tvShows.append(show)
@@ -48,13 +56,18 @@ class TvShowListViewController: UITableViewController {
                 
                 DispatchQueue.main.async { [weak self] in
                     guard let weakSelf = self else { return }
+                    weakSelf.activityIndicator.stopAnimating()
+                    weakSelf.searchTvShows.isHidden = false
                     weakSelf.tableView.reloadData()
                 }
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         title = "TV Shows"
-        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,7 +78,6 @@ class TvShowListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TvShow", for: indexPath)
         let tvShow = tvShows[indexPath.row]
         cell.textLabel?.text = tvShow.name
-//        cell.imageView?.image = UIImage(systemName: "film")
         cell.imageView?.image = UIImage(data: tvShow.imageMedium)
         return cell
     }
@@ -74,9 +86,9 @@ class TvShowListViewController: UITableViewController {
         let detailView = TvShowDetailViewController()
         let tvShow = tvShows[indexPath.row]
         detailView.showTitle = tvShow.name
-        detailView.showGenres = tvShow.name
-//        detailView.showPoster = tvShow.imageOriginal
+        detailView.showGenres = tvShow.genres
         detailView.showPoster = tvShow.imageMedium
+        // TODO: Add more info like duration (in min),
         navigationController?.pushViewController(detailView, animated: true)
     }
 
@@ -85,11 +97,13 @@ class TvShowListViewController: UITableViewController {
 // TODO: Move to own file
 class TvShow {
     var name: String
+    var genres: [String]
     var imageMedium: Data
     var imageOriginal: Data
     
-    init(name: String, imageMedium: Data, imageOriginal: Data) {
+    init(name: String, genres: [String], imageMedium: Data, imageOriginal: Data) {
         self.name = name
+        self.genres = genres
         self.imageMedium = imageMedium
         self.imageOriginal = imageOriginal
     }
