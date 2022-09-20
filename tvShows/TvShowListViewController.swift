@@ -7,7 +7,8 @@
 
 import UIKit
 
-class TvShowListViewController: UITableViewController {
+class TvShowListViewController: UITableViewController, UISearchResultsUpdating {
+    
     // Plan:
     // Create an ApiCaller for TV-Maze API (https://www.tvmaze.com/api)
     //      Test with api endpoint: https://api.tvmaze.com/singlesearch/shows?q=girls
@@ -18,17 +19,14 @@ class TvShowListViewController: UITableViewController {
     var tvShows = [TvShow]()
     var apiCaller = ApiCaller()
     
-    @IBOutlet var searchTvShows: UISearchBar!
+    var searchBarController: UISearchController!
     let activityIndicator = UIActivityIndicatorView(style: .large)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        activityIndicator.topAnchor.constraint(equalTo: searchTvShows.bottomAnchor, constant: 100).isActive = true
-        searchTvShows.isHidden = true
+        setupActivityIndicator()
+        setupSearchBarController()
         activityIndicator.startAnimating()
         
         DispatchQueue.global().async { [weak self] in
@@ -57,7 +55,7 @@ class TvShowListViewController: UITableViewController {
                 DispatchQueue.main.async { [weak self] in
                     guard let weakSelf = self else { return }
                     weakSelf.activityIndicator.stopAnimating()
-                    weakSelf.searchTvShows.isHidden = false
+                    weakSelf.searchBarController.searchBar.isHidden = false
                     weakSelf.tableView.reloadData()
                 }
             }
