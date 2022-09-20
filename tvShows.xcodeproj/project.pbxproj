@@ -70,12 +70,12 @@
 		9F2FC5C228D8C23D00486D6B /* tvShows */ = {
 			isa = PBXGroup;
 			children = (
-				9F2FC5E628D9A2A200486D6B /* Main View */,
-				9F2FC5C328D8C23D00486D6B /* AppDelegate.swift */,
-				9F2FC5C528D8C23D00486D6B /* SceneDelegate.swift */,
 				9F2FC5E828D9A2C400486D6B /* API */,
+				9F2FC5E628D9A2A200486D6B /* Main View */,
 				9F2FC5E728D9A2B700486D6B /* Detail View */,
 				9F2FC5E528D99BF300486D6B /* Models */,
+				9F2FC5C328D8C23D00486D6B /* AppDelegate.swift */,
+				9F2FC5C528D8C23D00486D6B /* SceneDelegate.swift */,
 				9F2FC5C928D8C23D00486D6B /* Main.storyboard */,
 				9F2FC5CC28D8C23F00486D6B /* Assets.xcassets */,
 				9F2FC5CE28D8C23F00486D6B /* LaunchScreen.storyboard */,
